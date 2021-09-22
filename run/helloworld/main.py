@@ -23,8 +23,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
+    string = "teststring"
     name = os.environ.get("NAME", "World")
-    return "Hello Singh {}!".format(name)
+    return "Hello Singh {}!".format(string)
 
 
 if __name__ == "__main__":
