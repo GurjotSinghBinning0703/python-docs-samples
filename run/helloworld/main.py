@@ -25,25 +25,25 @@ app = Flask(__name__)
 def hello_world():
     project_id = "gcp-it-ec-seoanlt-dev-tki"
     string = "teststring"
-    secret_id = "Singh_test_secret"
-    # Create the Secret Manager client.
+    # secret_id = "Singh_test_secret"
+    # # Create the Secret Manager client.
     client = secretmanager.SecretManagerServiceClient()
-    # Build the parent name from the project.
-    parent = f"projects/{project_id}"
-    # Create the parent secret.
-    secret = client.create_secret(
-        request={
-            "parent": parent,
-            "secret_id": secret_id,
-            "secret": {"replication": {"automatic": {}}},
-        }
-    )
-    # Add the secret version.
-    version = client.add_secret_version(
-        request={"parent": secret.name, "payload": {"data": b"hello world!"}}
-    )
+    # # Build the parent name from the project.
+    # parent = f"projects/{project_id}"
+    # # Create the parent secret.
+    # secret = client.create_secret(
+    #     request={
+    #         "parent": parent,
+    #         "secret_id": secret_id,
+    #         "secret": {"replication": {"automatic": {}}},
+    #     }
+    # )
+    # # Add the secret version.
+    # version = client.add_secret_version(
+    #     request={"parent": secret.name, "payload": {"data": b"hello world!"}}
+    # )
     # Access the secret version.
-    response = client.access_secret_version(request={"name": version.name})
+    response = client.access_secret_version(request={"name": "Singh_test_secret"})
     payload = response.payload.data.decode("UTF-8")
     name = os.environ.get("NAME", "World")
 
