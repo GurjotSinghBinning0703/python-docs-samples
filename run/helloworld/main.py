@@ -47,10 +47,7 @@ def hello_world():
     # payload = response.payload.data.decode("UTF-8")
     payload = access_secret_version(project_id = project_id,secret_id=secret_id, version_id = "1" )
     name = os.environ.get("NAME", "World")
-
-
-
-    return "Hello Singh neu {}!".format(payload)
+    return "Hello Singh neuohne eigenen acc{}!".format(payload)
 
 def access_secret_version(project_id, secret_id, version_id):
     """
