@@ -15,7 +15,7 @@
 # [START cloudrun_helloworld_service]
 # [START run_helloworld_service]
 import os
-
+import pandas as pd
 from flask import Flask
 from google.cloud import secretmanager
 app = Flask(__name__)
@@ -26,28 +26,12 @@ def hello_world():
     project_id = "gcp-it-ec-seoanlt-dev-tki"
     string = "teststring"
     secret_id = "Singh_test_secret"
-    # # # Create the Secret Manager client.
-    # client = secretmanager.SecretManagerServiceClient()
-    # # # Build the parent name from the project.
-    # # parent = f"projects/{project_id}"
-    # # # Create the parent secret.
-    # # secret = client.create_secret(
-    # #     request={
-    # #         "parent": parent,
-    # #         "secret_id": secret_id,
-    # #         "secret": {"replication": {"automatic": {}}},
-    # #     }
-    # # )
-    # # # Add the secret version.
-    # # version = client.add_secret_version(
-    # #     request={"parent": secret.name, "payload": {"data": b"hello world!"}}
-    # # )
-    # # Access the secret version.
-    # response = client.access_secret_version(request={"name": "Singh_test_secret"})
-    # payload = response.payload.data.decode("UTF-8")
+    df = pd.read_csv('gs://seoanlt-dev-keyword-gap/keyword_testlist_die_dritte.csv')
+    test = df.iloc[0]
+
     payload = access_secret_version(project_id = project_id,secret_id=secret_id, version_id = "1" )
     name = os.environ.get("NAME", "World")
-    return "Hello Singh neuohne eigenen acc{}!".format(payload)
+    return "Hello Singh neuohne eigenen acc{}!".format(test)
 
 def access_secret_version(project_id, secret_id, version_id):
     """
