@@ -40,7 +40,7 @@ def hello_world():
 
     payload = access_secret_version(project_id = project_id,secret_id=secret_id, version_id = "1" )
     name = os.environ.get("NAME", "World")
-    return "Hello Singh neuohne eigenen acc{}!".format(test)
+    return "Hello Singh neuohne eigenen acc 2 {}!".format(test)
 
 
 
