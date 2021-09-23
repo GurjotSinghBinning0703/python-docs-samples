@@ -18,7 +18,7 @@ import os
 import pandas as pd
 from flask import Flask
 from google.cloud import secretmanager
-#from google.cloud import storage
+from google.cloud import storage
 import gcsfs
 app = Flask(__name__)
 
@@ -29,21 +29,21 @@ def hello_world():
     string = "teststring"
     secret_id = "Singh_test_secret"
 
-    # storage_client = storage.Client()
-    # bucket = storage_client.bucket("seoanlt-dev-keyword-gap")
-    # new_df = bucket.blob("keyword_testlist_die_dritte.csv")
-    # df = pd.read_csv('gs://seoanlt-dev-keyword-gap/keyword_testlist_die_dritte.csv')
-    # test = str(df.iloc[0])
-    fs = gcsfs.GCSFileSystem(project=project_id)
-    with fs.open('seoanlt-dev-keyword-gap/keyword_testlist_die_dritte.csv') as f:
-        df = pd.read_csv(f)
-
+    storage_client = storage.Client()
+    bucket = storage_client.bucket("seoanlt-dev-keyword-gap")
+    new_df = bucket.blob("keyword_testlist_die_dritte.csv")
+    df = pd.read_csv('gs://seoanlt-dev-keyword-gap/keyword_testlist_die_dritte.csv')
     test = str(df.iloc[0])
+    # fs = gcsfs.GCSFileSystem(project=project_id)
+    # with fs.open('seoanlt-dev-keyword-gap/keyword_testlist_die_dritte.csv') as f:
+    #     df = pd.read_csv(f)
+    #
+    # test = str(df.iloc[0])
 
 
     payload = access_secret_version(project_id = project_id,secret_id=secret_id, version_id = "1" )
     name = os.environ.get("NAME", "World")
-    return "Hello Singh neuohne eigenen acc 2 {}!".format(test)
+    return "Hello Singh neuohne eigenen acc wieder mit google {}!".format(test)
 
 
 
