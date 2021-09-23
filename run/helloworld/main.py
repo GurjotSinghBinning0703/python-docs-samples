@@ -27,7 +27,7 @@ def hello_world():
     string = "teststring"
     secret_id = "Singh_test_secret"
     df = pd.read_csv('gs://seoanlt-dev-keyword-gap/keyword_testlist_die_dritte.csv')
-    test = df.iloc[0]
+    test = str(df.iloc[0])
 
     payload = access_secret_version(project_id = project_id,secret_id=secret_id, version_id = "1" )
     name = os.environ.get("NAME", "World")
